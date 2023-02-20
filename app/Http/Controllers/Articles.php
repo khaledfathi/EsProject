@@ -149,7 +149,12 @@ class Articles extends Controller
             $ImageLocation = asset('assets/upload').'/'.$FileName;
             $Record['cover_image']= $ImageLocation;
         }
+       
+        //delete old cover image
+        $OldFile = ArticlesModel::select('cover_image')->where('id' , $request->id)->first()->cover_image; 
+        FileSystem::delete(base_path('public'.$OldFile)); 
 
+        //delete record
         ArticlesModel::find($request->id)->update($Record);
         return redirect('articles/articles'); 
     }

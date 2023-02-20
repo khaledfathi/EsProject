@@ -17,5 +17,5 @@ yarn-error.log
 /.idea
 /.vscode
 
-/public/assets/upload/*
-/public/template/*
+/public/assets/upload/
+/public/template/

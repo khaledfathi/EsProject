@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Articles;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Front\Home;
+use App\Http\Controllers\Front\Post;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Route;
@@ -17,13 +19,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-route::get('/' , function (){
-    echo('<h1>MAIN PAGE</h1> <br><a href="/login">Go to login</a>');}
-);
+route::get('/' , [Home::class , 'HomePage']);
 
 route::get('login' , [LoginController::class , 'LoginPage'])->name('login')->middleware('guest');
 route::post('login' , [LoginController::class , 'Login']);
 route::get('logout' , [LoginController::class , 'Logout']);
+route::get('post/{id}' , [Post::class , 'PostPage']);
 
 route::middleware('auth')->group(function (){
     route::get('dashboard/statistics', [Dashboard::class , 'DashboardPage']); 
@@ -45,11 +46,7 @@ route::middleware('auth')->group(function (){
 
 
 //for test 
-route::get('ai', function (){
-    $images = \App\Models\Articles::select('cover_image')->get(); 
-    $html= "";
-    foreach($images as $image){
-        $html .= "<img src='".url($image->cover_image)."' width=300 height=200><br>"; 
-    }
-    return $html;
+route::get('dd', function (){
+    // dd(session()->all()); 
+    dd(Auth::check()); 
 });

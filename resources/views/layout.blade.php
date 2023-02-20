@@ -27,6 +27,11 @@
     <!-- right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
+        <a class="nav-link btn btn-primary"  href="{{url('/')}}" target= "_blank" role="button">
+          <i class="text-white">Go To Blog</i>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link"  href="{{url('profile')}}" role="button">
           <i class="">{{auth()->user()->name}}</i>
         </a>

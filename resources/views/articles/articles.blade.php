@@ -27,14 +27,14 @@
       @if ($Articles)
         @foreach ($Articles as $Article)
            <tr>
-           <td>{{$loop->index}}</td>
+           <td>{{$loop->index+1}}</td>
            <td>{{$Article->id}}</td> 
            <td>{{$Article->title}}</td> 
            <td>{{$Article->category_name}}</td> 
            <td>{{$Article->created_at}}</td> 
            <td>{{$Article->updated_at}}</td> 
            <td><img src= "{{url($Article->cover_image)}}" width="100" hight="100"></td>
-           <td><a href="#" class="btn btn-success">View</a></td>
+           <td><a href="{{url("post/$Article->id")}}" class="btn btn-success">View</a></td>
            <td><a href="{{url('articles/editarticle?id='.$Article->id)}}" class="btn btn-primary">Edit</a></td>
            <td><a href="{{url('articles/deletearticle?id='.$Article->id)}}" class="btn btn-danger">Delete</a></td>
           </tr>
