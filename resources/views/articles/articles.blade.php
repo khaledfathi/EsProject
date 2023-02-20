@@ -17,6 +17,7 @@
         <th>Category</th>
         <th>Created</th>
         <th>Last Update</th>
+        <th>cover</th>
         <th>View</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -32,6 +33,7 @@
            <td>{{$Article->category_name}}</td> 
            <td>{{$Article->created_at}}</td> 
            <td>{{$Article->updated_at}}</td> 
+           <td><img src= "{{url($Article->cover_image)}}" width="100" hight="100"></td>
            <td><a href="#" class="btn btn-success">View</a></td>
            <td><a href="{{url('articles/editarticle?id='.$Article->id)}}" class="btn btn-primary">Edit</a></td>
            <td><a href="{{url('articles/deletearticle?id='.$Article->id)}}" class="btn btn-danger">Delete</a></td>

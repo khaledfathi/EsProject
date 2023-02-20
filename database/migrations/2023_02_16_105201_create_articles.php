@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text("content")->nullable(false);
             $table->string("cover_image")->default('/assets/images/default_article_cover.jpg');
             $table->foreignId('category_id')->references('id')->on('categories')->cascadeOnDelete(); 
-            $table->foreignId('user_id')->nullable(false)->references('id')->on('users'); 
+            $table->foreignId('user_id')->nullable(false)->references('id')->on('users')->cascadeOnDelete(); 
             $table->timestamps();
         }); 
     }

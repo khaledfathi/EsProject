@@ -10,7 +10,7 @@
   </div>
   <!-- /.card-header -->
   <!-- form start -->
-  <form action ="updatecategory" method="post" >
+  <form action ="updatecategory" method="get" >
     <div class="card-body">
       <div class="form-group">
         <label for="CategoryName">Category Name</label>

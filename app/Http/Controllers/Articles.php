@@ -6,6 +6,7 @@ use App\Models\Categories;
 use App\Models\Articles as ArticlesModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Nette\Utils\FileSystem;
 
 class Articles extends Controller
 {
@@ -36,6 +37,13 @@ class Articles extends Controller
     }
     public function DeleteCategory(Request $request)
     {
+        //remove related file in articles belong to the category that has been deleted 
+        $Articles = ArticlesModel::select('cover_image')->where('category_id' , $request->id)->get(); 
+        foreach($Articles as $Article){
+            if ($Article->cover_image != "/assets/images/default_article_cover.jpg"){
+                FileSystem::delete(base_path("public").$Article->cover_image);
+            }
+        }
         Categories::find($request->id)->delete();
         return redirect('articles/categories');
     }
@@ -104,7 +112,12 @@ class Articles extends Controller
         return redirect('articles/articles');
     }
     public function DeleteArticle(Request $request){
-        ArticlesModel::find($request->id)->delete(); 
+        $Article = ArticlesModel::find($request->id);
+        $CoverImagePath = $Article->cover_image;
+
+        FileSystem::delete(base_path('public').$CoverImagePath); 
+
+        $Article->delete(); 
         return redirect('articles/articles') ;
     }
     public function EditArticlePage(Request $request){

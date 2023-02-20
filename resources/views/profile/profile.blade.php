@@ -16,6 +16,9 @@
             <b>Articles Posted</b> <a class="float-right">{{$ArticlesCount}}</a>
             </li>
             <li class="list-group-item">
+            <b>Name</b> <a class="float-right">{{Auth::user()->name}}</a>
+            </li>
+            <li class="list-group-item">
             <b>Email</b> <a class="float-right">{{Auth::user()->email}}</a>
             </li>
         </ul>
